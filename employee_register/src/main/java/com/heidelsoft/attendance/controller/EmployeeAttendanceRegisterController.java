@@ -3,6 +3,9 @@
  */
 package com.heidelsoft.attendance.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,13 +33,24 @@ public class EmployeeAttendanceRegisterController {
 	@GetMapping("/greeting")
 	  public String greetingForm(Model model) {
 	    model.addAttribute("greeting", new Greeting());
-	    return "greeting.html";
+	    return "greeting";
 	  }
 
-	  @RequestMapping(value="/submit",method=RequestMethod.POST,consumes="application/json")
-	  public String greetingSubmit( Greeting greeting) {
-	    return "result.html";
+	  @PostMapping("/greeting")
+	  public String greetingSubmit(@ModelAttribute Greeting greeting, Model model) {
+		List<Greeting>greetingList = new ArrayList<>();
+		greetingList.add(greeting);
+		greetingList.add(greeting);
+		model.addAttribute("greetings",greetingList);
+	    return "result";
 	  }
-	
+	  @GetMapping("/get/greeting")
+	  public String greetingGet(@ModelAttribute Greeting greeting, Model model) {
+		List<Greeting>greetingList = new ArrayList<>();
+		greetingList.add(greeting);
+		//greetingList.add(greeting);
+		model.addAttribute("greetings",greetingList);
+	    return "result";
+	  }
 
 }

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<script>
+	function getGreeting(button){
+		var id = button.getAttribute("field");
+	}
+</script>
+<body>
+	<h1>Result</h1>
+   <!--  <p th:text="'id: ' + ${greeting.id}" />
+    <p th:text="'content: ' + ${greeting.content}" />
+    <a href="/greeting">Submit another message</a> -->
+    <table>
+    	<tr border="10px">
+    		<th>Id</th><th>Content</th>
+    	</tr>
+    	<tr th:each="greeting: ${greetings}">
+    		<td th:text="${greeting.id}" />
+    		<td th:text="${greeting.content}" />
+    		<td><button th:field="${greeting.id}" onclick="getGreeting(this)">Get</button>
+    	</tr>
+    </table>
+    
+</tr>
+</body>
+
+</html>
